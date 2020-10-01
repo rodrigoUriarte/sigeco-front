@@ -1,66 +1,84 @@
 <template>
-  <v-app id="inspire">
-    <v-navigation-drawer v-model="drawer" app>
-      <v-list dense>
-        <v-list-item link to="dashboard">
-          <v-list-item-action>
-            <v-icon>mdi-home</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>Dashboard</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-        <v-list-item link to="comedores">
-          <v-list-item-action>
-            <v-icon>mdi-email</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>Comedores</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
+  <div>
+    <v-card class="mx-auto" max-width="500">
+      <v-system-bar color="indigo darken-2" dark>
+        <v-spacer></v-spacer>
 
-    <v-app-bar app color="indigo" dark>
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-      <v-toolbar-title>SiGeCo</v-toolbar-title>
-    </v-app-bar>
+        <v-icon>mdi-window-minimize</v-icon>
 
-    <v-main>
+        <v-icon>mdi-window-maximize</v-icon>
+
+        <v-icon>mdi-close</v-icon>
+      </v-system-bar>
+
+      <v-toolbar color="indigo" dark>
+        <v-app-bar-nav-icon></v-app-bar-nav-icon>
+
+        <v-toolbar-title>Discover</v-toolbar-title>
+
+        <v-spacer></v-spacer>
+
+        <v-btn icon>
+          <v-icon>mdi-magnify</v-icon>
+        </v-btn>
+      </v-toolbar>
+
       <v-container fluid>
-        <v-tooltip right>
-          <template v-slot:activator="{ on }">
-            <router-view v-on="on"></router-view>
-            <!-- <v-btn :href="source" icon large target="_blank" v-on="on">
-                  <v-icon large>mdi-code-tags</v-icon>
-                </v-btn> -->
-          </template>
-          <span>Source</span>
-        </v-tooltip>
-      </v-container>
-    </v-main>
+        <v-row dense>
+          <v-col v-for="card in cards" :key="card.title" :cols="card.flex">
+            <v-card>
+              <v-img
+                :src="card.src"
+                class="white--text align-end"
+                gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+                height="200px"
+              >
+                <v-card-title v-text="card.title"></v-card-title>
+              </v-img>
 
-    <v-footer color="indigo" app>
-      <span class="white--text"
-        >&copy; {{ new Date().getFullYear() }}
-        <a
-          href="https://github.com/rodrigoUriarte/"
-          target="_blank"
-          style="color: white"
-          >Rodrigo Uriarte</a
-        >
-      </span>
-    </v-footer>
-  </v-app>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+
+                <v-btn icon>
+                  <v-icon>mdi-heart</v-icon>
+                </v-btn>
+
+                <v-btn icon>
+                  <v-icon>mdi-bookmark</v-icon>
+                </v-btn>
+
+                <v-btn icon>
+                  <v-icon>mdi-share-variant</v-icon>
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-card>
+  </div>
 </template>
 
 <script>
 export default {
-  props: {
-    source: String,
-  },
   data: () => ({
-    drawer: null,
+    cards: [
+      {
+        title: "Pre-fab homes",
+        src: "https://cdn.vuetifyjs.com/images/cards/house.jpg",
+        flex: 12,
+      },
+      {
+        title: "Favorite road trips",
+        src: "https://cdn.vuetifyjs.com/images/cards/road.jpg",
+        flex: 6,
+      },
+      {
+        title: "Best airlines",
+        src: "https://cdn.vuetifyjs.com/images/cards/plane.jpg",
+        flex: 6,
+      },
+    ],
   }),
 };
 </script>

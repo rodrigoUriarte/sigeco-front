@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import vuetify from './plugins/vuetify';
-import Dashboard from './views/Dashboard.vue'
+import Layout from './views/Layout.vue'
 import router from './router'
 
 Vue.config.productionTip = false
@@ -8,5 +8,5 @@ Vue.config.productionTip = false
 new Vue({
   vuetify,
   router,
-  render: h => h(Dashboard)
+  render: h => h(Layout)
 }).$mount('#app')
